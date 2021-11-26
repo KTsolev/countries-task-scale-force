@@ -1,0 +1,52 @@
+@import '../../styles/mixins/mixins.scss';
+
+.country {
+
+    &-tile {
+        
+        @include row;
+        position: relative;
+
+        &-inner {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -2;
+            width: 0%;
+            height: 100%;
+            background-color: #80b182;
+        }
+        
+        &:nth-child(2n+1) {
+            background-color: #76bbe2;
+        }
+    
+        &-item {
+            @include row-item;
+            padding: 4px;
+            color: #387a75;
+        }
+    }
+}
+
+.animate {
+    width: 100%;
+    animation: fill;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+}
+
+@media screen and (max-width: 450px) {
+    .country-tile {
+       @include column;
+    }
+    
+}
+
+@keyframes fill {
+    from {width: 0%};
+    to {width: 100%};
+}
+
+

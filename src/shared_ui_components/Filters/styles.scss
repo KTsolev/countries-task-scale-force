@@ -1,0 +1,87 @@
+@import '../../styles/mixins/mixins.scss';
+
+.filter {
+    @include row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    input[type=text] {
+        resize: vertical;
+        min-width: 220px;
+        max-height: 50px;
+        margin: 0 10px;
+        padding: 5px;
+        border-radius:15px;
+        border: 1px solid;
+        box-shadow:4px 4px 10px #5751510f;
+        transition: all 150ms ease;
+        height:150px;
+
+        &:focus {
+            border: 1px solid #0d60be;
+            box-shadow:4px 4px 10px #1919a785;
+        }
+    }
+
+    label {
+        margin: 0 4px;
+        font-size: 18px;
+        color: #223254;
+    }
+
+    select {
+        -webkit-appearance: none;
+        padding: 7px 40px 7px 12px;
+        border: 1px solid #E8EAED;
+        border-radius: 5px;
+        background: white;
+        margin-left: 6px;
+        box-shadow: 0 1px 3px -2px #9098A9;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 16px;
+        transition: all 150ms ease;
+
+        &:required:invalid {
+            color: #5A667F;
+        }
+        
+        option {
+            color: #223254;
+            &[value=""][disabled] {
+                display: none;
+            }
+        }
+    
+        &:focus {
+            outline: none;
+            border-color: #0077FF;
+            box-shadow: 0 0 0 2px rgba(#0077FF,.2);
+        }
+
+        &:hover {
+            stroke: #0077FF;
+        }
+
+        &:focus ~.svg {
+            transform: rotateZ(180deg);
+        }
+    }
+
+}
+
+.svg-holder {
+    position: relative;
+}
+
+.svg {
+    display: inline-block;
+    position: absolute;
+    transition: all 150ms ease;
+    top: 8px;
+    right: 4px;
+    padding: 2px 4px;
+    width: 20px;
+    height: 20px;
+}

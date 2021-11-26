@@ -1,0 +1,28 @@
+@import '../../styles/mixins/mixins.scss';
+
+.table {
+    &-header {
+
+        @include row; 
+    
+        &-item {
+    
+            @include row-item;
+        
+            font-size: 18px;
+            font-weight: 700;
+            background-color: #106c97;
+             color: #ffe4c4;
+            padding: 4px;
+    
+            &:hover,
+            &:visited {
+               @include hover-mixin(#545f6d, #e9e64b);
+            }
+        }
+
+        &--vertical {
+            display: none;
+        }
+     }
+}
