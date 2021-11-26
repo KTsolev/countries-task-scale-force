@@ -2,7 +2,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { beginUserAction, cancelUserAction } from '../../Screens/Countries/countriesSlice';
-import './styles.scss';
 
 export const CountryTile = (props) => {
     const { country, cssClassName, dissableActions } = props;

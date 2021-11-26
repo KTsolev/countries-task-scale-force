@@ -1,6 +1,9 @@
 import { store } from '../../redux/store';
 import { Provider } from 'react-redux';
 import { CountriesList } from '../Countries/Countries';
+import { CountryDetails } from '../CountryDetails/CountryDetails';
+import { NotFoundPage } from '../NotFound/NotFound';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +18,8 @@ const App = () => {
             <Router>
               <Switch>
                 <Route exact path="/" children={<CountriesList />} />
+                <Route path="/details" children={<CountryDetails />} />
+                <Route path="*" children={<NotFoundPage />} />
               </Switch>
             </Router>
         </Provider>

@@ -123,6 +123,99 @@ h2 {
     border-bottom: 1px solid #38a1d1;
   }
 }
+.details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+  position: relative;
+}
+.details-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.details-item .svg {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 2px 4px;
+  width: 30px;
+  height: 30px;
+}
+.details-item--row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 12px;
+  background-color: #d0eaeb;
+}
+.details-item-label, .details-item-header {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border: 1px ridge #b9b9b9;
+  align-items: center;
+}
+.details-item-label {
+  font-size: 18px;
+  color: #4a4b4a;
+}
+.details-item-header {
+  font-size: 18px;
+  color: #353535;
+  font-weight: bold;
+}
+
+.column {
+  flex-direction: column !important;
+  justify-content: space-around !important;
+  align-items: stretch !important;
+  background-color: transparent !important;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.not-found-item {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.not-found-item .svg {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  padding: 2px 4px;
+  width: 30px;
+  height: 30px;
+}
+.not-found-img {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  height: 80vh;
+  min-height: 500px;
+  min-width: 300px;
+}
+.not-found-img img {
+  width: 100%;
+  height: 100%;
+}
+
 .country-tile {
   display: flex;
   flex-direction: row;
@@ -283,6 +376,43 @@ h2 {
 }
 .table-header--vertical {
   display: none;
+}
+
+.shine {
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  display: inline-block;
+  position: relative;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+.shimmer-holder {
+  display: flex;
+  margin-left: 25px;
+  margin-top: 15px;
+  vertical-align: top;
+}
+
+.lines {
+  display: inline-block;
+  height: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,6 +1,5 @@
 import React from 'react';
 import {ReactComponent as ChveronDown} from '../../assets/chevron_down.svg';
-import './styles.scss';
 
 export const Filters = (props) => {
     const { filterBy, itemsPerPage, onChange, onSelect } = props;

@@ -5,8 +5,9 @@ import { fetchCountries } from './countriesSlice';
 import { CountryTile } from '../../shared_ui_components/CountryTile/CountryTile';
 import { Filters } from '../../shared_ui_components/Filters/Filters';
 import { TableHeader } from '../../shared_ui_components/TableHeader/TableHeader';
+import { ShimmerComponent } from '../../shared_ui_components/ShimmerComponent/ShimmerComponent';
 import { selectCountries, selectedCountry, isLoading, error as queryError } from './selectors';
-import './styles.scss';
+import {ErrorHandler} from '../../shared_ui_components/ErrorHandler/ErrorHandler';
 
 export const CountriesList = (props) => {
   const fetchedCountries = useSelector(selectCountries);
@@ -23,14 +24,14 @@ export const CountriesList = (props) => {
   const { items = [], pages, per_page, page } = fetchedCountries;
 
   useEffect(() => {
-      dispatch(fetchCountries({page: 1, itemsPerPage:50}));
+      loadCountries(1,50);
   }, []);
 
-//   useEffect(() => {
-//     if (selectedCountryDetails) {
-//         history.push('/details');
-//     }
-// }, [selectedCountryDetails])
+  useEffect(() => {
+    if (selectedCountryDetails) {
+        history.push('/details');
+    }
+  }, [selectedCountryDetails])
 
   useEffect(() => {
     if (pages > 0) {
@@ -66,6 +67,8 @@ export const CountriesList = (props) => {
 
     setFiltered(newItems);
   }
+
+  const loadCountries = (page=1, itemsPerPage=50) => dispatch(fetchCountries({page, itemsPerPage}));
 
 
   const onChange = (event) => {
@@ -120,7 +123,7 @@ export const CountriesList = (props) => {
     return (
       <section className="list">
         <h2>Countries List</h2>
-        <span>Loading...</span>
+        <ShimmerComponent numberItems={25} />
       </section>);
   }
 
@@ -128,7 +131,10 @@ export const CountriesList = (props) => {
     return (
       <section className="list">
         <h2>Countries List</h2>
-        <span>Something went wrong and coudn't fetch data</span>
+        <ErrorHandler 
+          title="Something went wrong and coudn't fetch data"
+          onPress={loadCountries}
+        />
       </section>); 
   } 
 

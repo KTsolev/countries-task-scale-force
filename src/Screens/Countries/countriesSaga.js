@@ -1,17 +1,17 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest, select, take, race, spawn, delay } from 'redux-saga/effects';
 import { getCountries } from '../../network/endpoints';
 import { 
     fetchCountries,
     fetchCountriesSuccess,
     fetchCountriesFailure,
+    cancelUserAction,
+    beginUserAction,
+    selectCountry
 } from './countriesSlice';
 import { selectCountries } from './selectors';
 
 export function* watchCountriesSaga () {
     yield takeLatest(fetchCountries.type, fetchCountriesInit);
-   //  yield takeLatest(beginUserAction.type, bgTask);
-
-
 }
 
 function* fetchCountriesInit(action) {
@@ -32,3 +32,26 @@ function* fetchCountriesInit(action) {
       yield put(fetchCountriesFailure(error));
    }
 }
+
+export function* watchUserAction() {
+    while (true) {
+       let action = yield take(beginUserAction.type);
+       yield spawn(bgTask, action);
+    }
+ }
+ 
+ function* bgTask (task) {
+    const selected = task.payload;
+    const { undo } = yield race({
+       undo: take((action) => {
+          return action.type === cancelUserAction.type;
+       }),
+       proceed: delay(3000)
+    });
+    
+    if (undo) {
+       yield put(cancelUserAction(null));
+    } else {
+       yield put(selectCountry(selected));
+    }
+ }
