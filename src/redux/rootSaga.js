@@ -1,5 +1,5 @@
 import { all } from 'redux-saga/effects';
-import { watchCountriesSaga, watchUserAction } from '../Screens/Countries/countriesSaga';
+import { watchCountriesSaga, watchUserAction } from './countriesSaga';
 
 export function* rootSaga() {
     yield all([

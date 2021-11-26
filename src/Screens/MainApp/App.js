@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { CountriesList } from '../Countries/Countries';
 import { CountryDetails } from '../CountryDetails/CountryDetails';
 import { NotFoundPage } from '../NotFound/NotFound';
+import { ErrorBoundary } from '../../shared_ui_components/CountriesErrorBoundary/CountriesErrorBoundary';
 
 import {
   BrowserRouter as Router,
@@ -17,8 +18,14 @@ const App = () => {
         <Provider store={store}>
             <Router>
               <Switch>
-                <Route exact path="/" children={<CountriesList />} />
-                <Route path="/details" children={<CountryDetails />} />
+                <Route exact path="/" children={
+                  <ErrorBoundary>
+                     <CountriesList />
+                  </ErrorBoundary>} />
+                <Route path="/details" children={
+                  <ErrorBoundary>
+                    <CountryDetails />
+                  </ErrorBoundary>} />
                 <Route path="*" children={<NotFoundPage />} />
               </Switch>
             </Router>

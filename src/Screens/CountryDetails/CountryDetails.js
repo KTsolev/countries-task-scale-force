@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { CountryTile } from '../../shared_ui_components/CountryTile/CountryTile';
-import { selectedCountry } from '../Countries/selectors';
+import { selectedCountry } from '../../redux/selectors';
 import {ReactComponent as BackArrow} from '../../assets/back_arrow_left.svg';
-import { cancelUserAction } from '../Countries/countriesSlice';
+import { cancelUserAction } from '../../redux/countriesSlice';
 
 export const CountryDetails  = (props) => {
     const country = useSelector(selectedCountry);

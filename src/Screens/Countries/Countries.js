@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { fetchCountries } from './countriesSlice';
+import { fetchCountries } from '../../redux/countriesSlice';
+import { selectCountries, selectedCountry, isLoading, error as queryError } from '../../redux/selectors';
 import { CountryTile } from '../../shared_ui_components/CountryTile/CountryTile';
 import { Filters } from '../../shared_ui_components/Filters/Filters';
 import { TableHeader } from '../../shared_ui_components/TableHeader/TableHeader';
-import { ShimmerComponent } from '../../shared_ui_components/ShimmerComponent/ShimmerComponent';
-import { selectCountries, selectedCountry, isLoading, error as queryError } from './selectors';
 import {ErrorHandler} from '../../shared_ui_components/ErrorHandler/ErrorHandler';
+import { ShimmerComponent } from '../../shared_ui_components/ShimmerComponent/ShimmerComponent';
+import { PaginationButtons } from '../../shared_ui_components/PaginationButtons/PaginationButtons';
 
 export const CountriesList = (props) => {
   const fetchedCountries = useSelector(selectCountries);
@@ -16,12 +17,11 @@ export const CountriesList = (props) => {
   const error = useSelector(queryError);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [buttons, setButtons] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [filterBy, setFilterBy] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(0);
 
-  const { items = [], pages, per_page, page } = fetchedCountries;
+  const { items = [], pages, per_page } = fetchedCountries;
 
   useEffect(() => {
       loadCountries(1,50);
@@ -35,27 +35,14 @@ export const CountriesList = (props) => {
 
   useEffect(() => {
     if (pages > 0) {
-      calculatePaginationButtons();
       setItemsPerPage(per_page);
     }
 
-  }, [pages, per_page]);
+  }, [pages]);
 
   useEffect(() => {
     setFiltered(items);
   }, [items]);
-
-  const calculatePaginationButtons = () => {
-      let p = 1;
-      let items = [];
-  
-      while(p <= pages) {
-        items.push(p);
-        p++;
-      }
-  
-      setButtons(items);
-  }
 
   const filterByName = (value) => {
     let newItems = []; 
@@ -84,11 +71,6 @@ export const CountriesList = (props) => {
     setItemsPerPage(value);
     dispatch(fetchCountries({page: 1, itemsPerPage: value}));
   }
-
-  const onPaginationButtonClick = (event) => {
-    const value = event.currentTarget.innerHTML;
-    dispatch(fetchCountries({page: value, itemsPerPage, reload: true }));
-  } 
 
   const sortFetchedItemsBy = (prop, direction) => {
     let sorted = [...items].sort((a, b) => a[prop].localeCompare(b[prop]) * direction );
@@ -136,7 +118,7 @@ export const CountriesList = (props) => {
           onPress={loadCountries}
         />
       </section>); 
-  } 
+  }
 
   return (
     <section className="list">
@@ -147,7 +129,8 @@ export const CountriesList = (props) => {
             itemsPerPage={itemsPerPage}
             onSelect={onSelect}
         />
-        <TableHeader clasName='list-header' onPress={sortBy} />
+      <TableHeader clasName='list-header' onPress={sortBy} />
+      {filtered.length === 0 && <ErrorHandler title="We coudn't find any data. Try to change filtration!" />}
       {
         filtered.map((item, index) => 
           <section className='list-row'>
@@ -161,17 +144,8 @@ export const CountriesList = (props) => {
             />
           </section>
            )
-      } 
-
-      <div className='list-controls'>
-        {buttons.map(button => <span 
-              key={button}
-              onClick={onPaginationButtonClick}
-              className={button === page ? 'list-controls-item list-controls-item--current' : 'list-controls-item'}
-            >
-              {button}
-            </span>)}
-      </div>
+      }
+      <PaginationButtons itemsPerPage={itemsPerPage} />
     </section>
   )
 }

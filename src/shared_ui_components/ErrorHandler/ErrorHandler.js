@@ -6,7 +6,7 @@ export const ErrorHandler = (props) => {
     return (
         <section className='error-page'>
             <h2>{title}</h2>
-            <span className='error-button' onClick={onPress} >Try again.</span>
+            {onPress && <span className='error-button' onClick={onPress} >Try again.</span>}
         </section>
     )
 }

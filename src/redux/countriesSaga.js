@@ -1,5 +1,5 @@
 import { call, put, takeLatest, select, take, race, spawn, delay } from 'redux-saga/effects';
-import { getCountries } from '../../network/endpoints';
+import { getCountries } from '../network/endpoints';
 import { 
     fetchCountries,
     fetchCountriesSuccess,
