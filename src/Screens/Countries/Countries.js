@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { fetchCountries } from '../../redux/countriesSlice';
@@ -20,7 +20,6 @@ export const CountriesList = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [filterBy, setFilterBy] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(0);
-
   const { items = [], pages, per_page } = fetchedCountries;
 
   useEffect(() => {
@@ -82,7 +81,7 @@ export const CountriesList = (props) => {
     const direction = 1;
     switch(name) {
        case 'Iso Code':
-         sortFetchedItemsBy('iso2Code', direction);
+        sortFetchedItemsBy('iso2Code', direction);
        break;
        case 'Name':
         sortFetchedItemsBy('name', direction);
@@ -133,9 +132,9 @@ export const CountriesList = (props) => {
       {filtered.length === 0 && <ErrorHandler title="We coudn't find any data. Try to change filtration!" />}
       {
         filtered.map((item, index) => 
-          <section className='list-row'>
+          <section key={index} className='list-row'>
             <TableHeader 
-              key={index}
+              key={`${item.iso2Code}-${index}`}
               clasName='list-header list-header--vertical' 
               onPress={sortBy} />
             <CountryTile 

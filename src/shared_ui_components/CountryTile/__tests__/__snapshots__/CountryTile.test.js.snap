@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountryTile tests renders correctly with props 1`] = `
+<div
+  className="row country-tile"
+  onMouseDownCapture={[Function]}
+  onMouseUpCapture={[Function]}
+>
+  <div
+    className="country-tile-inner"
+  />
+  <span
+    className="country-tile-item"
+  >
+    AF
+  </span>
+  <span
+    className="country-tile-item"
+  >
+    Afghanistan
+  </span>
+  <span
+    className="country-tile-item"
+  >
+    Kabul
+  </span>
+  <span
+    className="country-tile-item"
+  >
+    69.1761
+  </span>
+  <span
+    className="country-tile-item"
+  >
+    34.5228
+  </span>
+</div>
+`;
+
+exports[`CountryTile tests renders correctly wtihout props 1`] = `null`;

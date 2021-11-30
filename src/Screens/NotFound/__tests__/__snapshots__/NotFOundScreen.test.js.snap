@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage tests should render component without props 1`] = `
+<section
+  className="not-found"
+>
+  <div
+    className="not-found-item"
+    onClick={[Function]}
+  >
+    <test
+      className="svg"
+    />
+  </div>
+  <div
+    className="not-found-img"
+  >
+    <img
+      alt="not found page"
+      src="test"
+    />
+  </div>
+</section>
+`;

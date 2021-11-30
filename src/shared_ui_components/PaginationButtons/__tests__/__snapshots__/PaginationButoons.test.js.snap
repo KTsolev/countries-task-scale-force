@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationButtons tests should render 6 butttons with curren one number 1 and should handle onclick 1`] = `
+<div
+  className="pagination-controls"
+>
+  <span
+    className="pagination-controls-item pagination-controls-item--current"
+    onClick={[Function]}
+  >
+    1
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    2
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    3
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    4
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    5
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    6
+  </span>
+</div>
+`;
+
+exports[`PaginationButtons tests should render 6 butttons with curren one number 1 and should handle onclick 2`] = `
+<div
+  className="pagination-controls"
+>
+  <span
+    className="pagination-controls-item pagination-controls-item--current"
+    onClick={[Function]}
+  >
+    1
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    2
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    3
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    4
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    5
+  </span>
+  <span
+    className="pagination-controls-item"
+    onClick={[Function]}
+  >
+    6
+  </span>
+</div>
+`;
+
+exports[`PaginationButtons tests should render component without props 1`] = `
+<div
+  className="pagination-controls"
+/>
+`;

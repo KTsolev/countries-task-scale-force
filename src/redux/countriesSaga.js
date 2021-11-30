@@ -19,8 +19,8 @@ function* fetchCountriesInit(action) {
       const { page, itemsPerPage, reload } = action.payload;
       const countries = yield select(selectCountries);
       let result;
-      
-      if (countries.result && !reload ) {
+
+      if (countries.length > 0 && !reload) {
          result = { ...countries };
          yield put(fetchCountriesSuccess({ ...result }));
       } else {
@@ -40,8 +40,9 @@ export function* watchUserAction() {
     }
  }
  
- function* bgTask (task) {
+ export function* bgTask (task) {
     const selected = task.payload;
+
     const { undo } = yield race({
        undo: take((action) => {
           return action.type === cancelUserAction.type;

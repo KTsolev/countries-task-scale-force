@@ -3,39 +3,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectCountries } from '../../redux/selectors';
 import { fetchCountries } from '../../redux/countriesSlice';
 
-
 export const PaginationButtons = (props) => {
   const { itemsPerPage } = props;
   const dispatch = useDispatch();
   const fetchedCountries = useSelector(selectCountries);
-  const { pages, per_page, page } = fetchedCountries;
+  const { pages, page } = fetchedCountries;
   const [buttons, setButtons] = useState([]);
-    
-    useEffect(() => {
-        if (pages > 0) {
-          calculatePaginationButtons();
-        }
-    
-      }, [pages, itemsPerPage]);
 
-      const calculatePaginationButtons = () => {
-        let p = 1;
-        let items = [];
+  useEffect(() => {
+    calculatePaginationButtons();    
+  }, [pages, itemsPerPage]);
+
+  const calculatePaginationButtons = () => {
+    let items = [];
     
-        while(p <= pages) {
-          items.push(p);
-          p++;
-        }
-    
-        setButtons(items);
+    for(let p=1; p <= pages; p++) {
+      items.push(p);
     }
-    
-    const onPaginationButtonClick = (event) => {
-        const value = event.currentTarget.innerHTML;
-        dispatch(fetchCountries({page: value, itemsPerPage, reload: true }));
-      } 
 
-    return (
+    setButtons([...items]);
+  }
+
+  const onPaginationButtonClick = (event) => {
+    const value = event.currentTarget.innerHTML;
+    dispatch(fetchCountries({page: value, itemsPerPage, reload: true }));
+  }
+
+  return (
     <div className='pagination-controls'>
         {buttons.map(button => <span 
               key={button}
@@ -44,6 +38,6 @@ export const PaginationButtons = (props) => {
             >
               {button}
             </span>)}
-      </div>
-    )
+    </div>
+  )
 }

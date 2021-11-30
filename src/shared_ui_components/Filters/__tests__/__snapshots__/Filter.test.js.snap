@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filters tests should onChange and OnSelect 1`] = `
+<form
+  className="filter"
+>
+  <input
+    name="filterBy"
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "target": Object {
+                "value": "AU",
+              },
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    placeholder="filter by name"
+    type="text"
+    value="AU"
+  />
+  <label
+    htmlFor="per_page"
+  >
+    Item per page
+  </label>
+  <div
+    className="svg-holder"
+  >
+    <select
+      name="per_page"
+      onChange={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              Object {
+                "target": Object {
+                  "value": 100,
+                },
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        }
+      }
+      value={100}
+    >
+      <option
+        selected={false}
+        value={20}
+      >
+        20
+      </option>
+      <option
+        selected={false}
+        value={50}
+      >
+        50
+      </option>
+      <option
+        selected={true}
+        value={100}
+      >
+        100
+      </option>
+      <option
+        selected={false}
+        value={150}
+      >
+        150
+      </option>
+      <option
+        selected={false}
+        value={200}
+      >
+        200
+      </option>
+    </select>
+    <test
+      className="svg"
+    />
+  </div>
+</form>
+`;
+
+exports[`Filters tests should render component with props 1`] = `
+<form
+  className="filter"
+>
+  <input
+    name="filterBy"
+    placeholder="filter by name"
+    type="text"
+    value="ard"
+  />
+  <label
+    htmlFor="per_page"
+  >
+    Item per page
+  </label>
+  <div
+    className="svg-holder"
+  >
+    <select
+      name="per_page"
+      value={50}
+    >
+      <option
+        selected={false}
+        value={20}
+      >
+        20
+      </option>
+      <option
+        selected={true}
+        value={50}
+      >
+        50
+      </option>
+      <option
+        selected={false}
+        value={100}
+      >
+        100
+      </option>
+      <option
+        selected={false}
+        value={150}
+      >
+        150
+      </option>
+      <option
+        selected={false}
+        value={200}
+      >
+        200
+      </option>
+    </select>
+    <test
+      className="svg"
+    />
+  </div>
+</form>
+`;
+
+exports[`Filters tests should render component without props 1`] = `
+<form
+  className="filter"
+>
+  <input
+    name="filterBy"
+    placeholder="filter by name"
+    type="text"
+  />
+  <label
+    htmlFor="per_page"
+  >
+    Item per page
+  </label>
+  <div
+    className="svg-holder"
+  >
+    <select
+      name="per_page"
+    >
+      <option
+        selected={false}
+        value={20}
+      >
+        20
+      </option>
+      <option
+        selected={false}
+        value={50}
+      >
+        50
+      </option>
+      <option
+        selected={false}
+        value={100}
+      >
+        100
+      </option>
+      <option
+        selected={false}
+        value={150}
+      >
+        150
+      </option>
+      <option
+        selected={false}
+        value={200}
+      >
+        200
+      </option>
+    </select>
+    <test
+      className="svg"
+    />
+  </div>
+</form>
+`;

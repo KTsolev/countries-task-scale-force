@@ -7,28 +7,30 @@ export const CountryTile = (props) => {
     const { country, cssClassName, dissableActions } = props;
     const dispatch = useDispatch();
     const div = useRef(null);
-
-    const getCountryDetails = () => {
-        dispatch(beginUserAction(country));
-    };
-
+    
     const animateElement = () => {
         if (div.current && !dissableActions) {
-            getCountryDetails();
+
+            dispatch(beginUserAction(country));
             div.current.className = div.current.className + ' animate';
         }
     }
 
     const removeAnimation = () => {
-        if (div.current && !dissableActions) {
+        if (div.current && div.current.className && div.current.className.includes('animate')) {
+
             dispatch(cancelUserAction(null));
             div.current.className = div.current.className.replace('animate', '');
         }
     }
 
+    if (!country) {
+        return null;
+    }
+
     return (
         <div 
-            className={`${cssClassName} country-tile`}
+            className={cssClassName ? `${cssClassName} country-tile`: "country-tile"}
             onMouseDownCapture={animateElement}
             onMouseUpCapture={removeAnimation}>
             <div ref={div} className='country-tile-inner'></div>

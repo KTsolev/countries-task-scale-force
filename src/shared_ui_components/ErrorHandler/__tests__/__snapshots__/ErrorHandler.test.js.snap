@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorHandler tests renders correctly 1`] = `
+<section
+  className="error-page"
+>
+  <h2 />
+</section>
+`;
+
+exports[`ErrorHandler tests when all props are passed 1`] = `
+<section
+  className="error-page"
+>
+  <h2>
+    Something went wrong!
+  </h2>
+  <span
+    className="error-button"
+    onClick={[MockFunction]}
+  >
+    Try again.
+  </span>
+</section>
+`;

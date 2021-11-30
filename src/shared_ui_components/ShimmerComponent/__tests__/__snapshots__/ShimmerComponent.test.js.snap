@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShimmerComponent tests should render 15 tiles 1`] = `
+<div
+  className="shimmer"
+>
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+  <div
+    className="lines shine"
+  />
+</div>
+`;
+
+exports[`ShimmerComponent tests should render with empty props 1`] = `
+<div
+  className="shimmer"
+/>
+`;

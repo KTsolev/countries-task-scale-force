@@ -2,7 +2,7 @@
 import React from 'react';
 
 export const TableHeader = (props) => {
-    const { onPress, clasName } = props;
+    const { onPress, outerKey, clasName } = props;
     return (
         <div className={clasName}>
             <span 

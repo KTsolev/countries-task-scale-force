@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHeader tests renders correctly 1`] = `
+<div>
+  <span
+    className="list-header-item"
+    data-prop="Iso Code"
+  >
+    Iso Code
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Name"
+  >
+    Name
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Capital City"
+  >
+    Capital City
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Longitude"
+  >
+    Longitude
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Latitude"
+  >
+    Latitude
+  </span>
+</div>
+`;
+
+exports[`TableHeader tests when all props are passed 1`] = `
+<div>
+  <span
+    className="list-header-item"
+    data-prop="Iso Code"
+    onClick={[MockFunction]}
+  >
+    Iso Code
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Name"
+    onClick={[MockFunction]}
+  >
+    Name
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Capital City"
+    onClick={[MockFunction]}
+  >
+    Capital City
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Longitude"
+    onClick={[MockFunction]}
+  >
+    Longitude
+  </span>
+  <span
+    className="list-header-item"
+    data-prop="Latitude"
+    onClick={[MockFunction]}
+  >
+    Latitude
+  </span>
+</div>
+`;

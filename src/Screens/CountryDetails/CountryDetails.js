@@ -10,16 +10,16 @@ export const CountryDetails  = (props) => {
     const country = useSelector(selectedCountry);
     const history = useHistory();
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         return () => {
-            dispatch(cancelUserAction(null))
+           dispatch(cancelUserAction(null));
         }
     }, [])
 
     const goBack = () => {
         history.replace('/');
-    }
+    }   
     
     if (!country) {
         goBack();

@@ -74,37 +74,6 @@ h2 {
 .list-header--vertical {
   display: none;
 }
-.list-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  position: sticky;
-  bottom: 0;
-  padding: 6px;
-  flex-wrap: wrap;
-}
-.list-controls-item {
-  display: block;
-  margin: 0 2px;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  text-align: center;
-  font-weight: 400;
-  background-color: #38a1d1;
-  color: #ffe4c4;
-  border-radius: 40px;
-}
-.list-controls-item--current {
-  background-color: #6e7f96;
-  border: 1px solid #ffe4c4;
-  color: #ffe4c4;
-}
-.list-controls-item:hover {
-  background-color: #526175;
-  color: #ffe4c4;
-}
 
 @media screen and (max-width: 450px) {
   .list-header {
@@ -401,7 +370,7 @@ h2 {
 
 .lines {
   display: inline-block;
-  height: 10px;
+  height: 30px;
   margin-top: 10px;
   width: 100%;
 }
