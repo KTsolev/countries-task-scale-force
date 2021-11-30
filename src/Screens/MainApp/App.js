@@ -19,13 +19,13 @@ const App = () => {
         <Provider store={store}>
             <Router>
               <Switch>
-                <Route exact path="/" children={
+                <Route exact path="/" children={({match}) => 
                   <ErrorBoundary>
-                     <CountriesList />
+                     <CountriesList match={match} />
                   </ErrorBoundary>} />
-                <Route path="/details" children={
+                <Route exact path="/details" children={({match}) => 
                   <ErrorBoundary>
-                    <CountryDetails />
+                    <CountryDetails match={match} />
                   </ErrorBoundary>} />
                 <Route path="*" children={<NotFoundPage />} />
               </Switch>

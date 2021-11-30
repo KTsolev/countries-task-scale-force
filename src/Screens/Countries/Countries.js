@@ -20,10 +20,10 @@ export const CountriesList = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [filterBy, setFilterBy] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(0);
-  const { items = [], pages, per_page } = fetchedCountries;
+  const { items = [], page, pages, per_page } = fetchedCountries;
 
   useEffect(() => {
-      loadCountries(1,50);
+      loadCountries(page, per_page);
   }, []);
 
   useEffect(() => {

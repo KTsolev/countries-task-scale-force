@@ -18,7 +18,7 @@ export const CountryDetails  = (props) => {
     }, [])
 
     const goBack = () => {
-        history.replace('/');
+        history.push('/');
     }   
     
     if (!country) {

@@ -12,7 +12,6 @@ import {
     cancelUserAction
 } from '../countriesSlice';
 
-const middlewares = [];
 const mockedCountries = jsonCountries;
 
 describe('Countries slice test', () => {

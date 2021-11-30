@@ -11,8 +11,8 @@ const mockedCountries = jsonCountries;
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
-    push: jest.fn(),
-    replace: mockedHistory,
+    replace: jest.fn(),
+    push: mockedHistory,
   }),
 }));
 
