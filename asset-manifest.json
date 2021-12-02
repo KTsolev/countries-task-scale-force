@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/countries-task-scale-force/static/css/main.e43d48fd.chunk.css",
+    "main.js": "/countries-task-scale-force/static/js/main.3deb6ada.chunk.js",
+    "main.js.map": "/countries-task-scale-force/static/js/main.3deb6ada.chunk.js.map",
+    "runtime-main.js": "/countries-task-scale-force/static/js/runtime-main.3d377de1.js",
+    "runtime-main.js.map": "/countries-task-scale-force/static/js/runtime-main.3d377de1.js.map",
+    "static/js/2.1e43dab5.chunk.js": "/countries-task-scale-force/static/js/2.1e43dab5.chunk.js",
+    "static/js/2.1e43dab5.chunk.js.map": "/countries-task-scale-force/static/js/2.1e43dab5.chunk.js.map",
+    "static/js/3.7ad78a02.chunk.js": "/countries-task-scale-force/static/js/3.7ad78a02.chunk.js",
+    "static/js/3.7ad78a02.chunk.js.map": "/countries-task-scale-force/static/js/3.7ad78a02.chunk.js.map",
+    "index.html": "/countries-task-scale-force/index.html",
+    "static/css/main.e43d48fd.chunk.css.map": "/countries-task-scale-force/static/css/main.e43d48fd.chunk.css.map",
+    "static/js/2.1e43dab5.chunk.js.LICENSE.txt": "/countries-task-scale-force/static/js/2.1e43dab5.chunk.js.LICENSE.txt",
+    "static/media/back_arrow_left.5b970816.svg": "/countries-task-scale-force/static/media/back_arrow_left.5b970816.svg",
+    "static/media/chevron_down.44142c2a.svg": "/countries-task-scale-force/static/media/chevron_down.44142c2a.svg",
+    "static/media/not-found-img.e3d986b7.jpg": "/countries-task-scale-force/static/media/not-found-img.e3d986b7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3d377de1.js",
+    "static/js/2.1e43dab5.chunk.js",
+    "static/css/main.e43d48fd.chunk.css",
+    "static/js/main.3deb6ada.chunk.js"
+  ]
+}
