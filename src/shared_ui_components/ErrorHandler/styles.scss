@@ -4,14 +4,15 @@
         @include column;
         justify-content: center;
         align-items: center;
+
+        &-button {
+            text-align: center;
+            width: 120px;
+            height: 40px;
+            padding: 8px 10px;
+            background-color: #ce6f30;
+            color: #FFF;
+        }
     }
 
-    &-button {
-        text-align: center;
-        width: 120px;
-        height: 40px;
-        padding: 8px 10px;
-        background-color: #ce6f30;
-        color: #FFF;
-    }
 }

@@ -9,7 +9,7 @@ const mockedHistoryReplace = jest.fn();
 const mockedHistoryPush = jest.fn();
 const mockDispatchFn = jest.fn();
 const mockedCountries = jsonCountries;
-const action = {"payload": {"itemsPerPage": 50, "page": 1}, "type": "countries/fetchCountries"};
+const action = {"payload": {"itemsPerPage": 50, "page": 1, "reload": false}, "type": "countries/fetchCountries"};
 
 
 jest.mock('react-router-dom', () => ({
@@ -42,9 +42,9 @@ describe('CountriesList tests', () => {
     
     it('should render isLoading state', async() => {
        selectCountries.mockReturnValue({
-           page: 0,
+           page: 1,
            pages: 0,
-           per_page: 0,
+           per_page: 50,
            total: 0,
            items: []
        });
@@ -62,9 +62,9 @@ describe('CountriesList tests', () => {
       
     it('should render empty state', async() => {
         selectCountries.mockReturnValue({
-            page: 0,
+            page: 1,
             pages: 0,
-            per_page: 0,
+            per_page: 50,
             total: 0,
             items: []
         });
@@ -110,7 +110,35 @@ describe('CountriesList tests', () => {
         error.mockReturnValue('Something went wrong!');
  
         const tree = renderer.create(<CountriesList />);
-        const button = tree.root.findByProps({className: 'error-button'});
+        const button = tree.root.findByProps({className: 'error-page-button'});
+
+        expect(button).toBeTruthy();
+        act(button.props.onClick);
+
+        expect(mockDispatchFn).toHaveBeenCalledWith(action);
+     });
+
+     it('should render error state from api', () => {
+        selectCountries.mockReturnValue({
+            page: 0,
+            pages: 0,
+            per_page: 0,
+            total: 0,
+            items: []
+        });
+        selectedCountry.mockReturnValue(null);
+        isLoading.mockReturnValue(false);
+        error.mockReturnValue({
+            data: { message: [
+            {
+                id: 120,
+                key: 'Invalid value',
+                value: 'The provided parameter value is not valid'
+            }
+        ]}});
+ 
+        const tree = renderer.create(<CountriesList />);
+        const button = tree.root.findByProps({className: 'error-page-button'});
 
         expect(button).toBeTruthy();
         act(button.props.onClick);
@@ -254,6 +282,77 @@ describe('CountriesList tests', () => {
         expect(input).toBeTruthy();
         act(() => input.props.onChange(event));
 
+        expect(tree.toJSON()).toMatchSnapshot();
+     });
+
+     
+     it('should handle debounced search by name', async() => {
+        selectCountries.mockReturnValue(mockedCountries);
+        selectedCountry.mockReturnValue(null);
+        isLoading.mockReturnValue(false);
+        error.mockReturnValue(null);
+        const timeout = true;
+
+        const tree = renderer.create(<CountriesList />);
+        const action = {
+            type: 'countries/fetchCountryByName',
+            payload: {
+                name: 'ce'
+            }
+        };
+        let input = tree.root.findByProps({name: 'searchByName'});
+        
+        const event = {
+            currentTarget: {
+               name: 'searchByName',
+               value: 'ce'
+            }
+        }
+        
+        expect(input).toBeTruthy();
+        
+        act(() => input.props.onChange(event));
+
+        await new Promise(r => setTimeout(r, 900));
+        expect(timeout).toBeTruthy();
+        
+        expect(mockDispatchFn).toHaveBeenLastCalledWith(action);
+        expect(tree.toJSON()).toMatchSnapshot();
+     });
+
+     it('should get all countries when searchByName field is empty', async() => {
+        selectCountries.mockReturnValue(mockedCountries);
+        selectedCountry.mockReturnValue(null);
+        isLoading.mockReturnValue(false);
+        error.mockReturnValue(null);
+        const timeout = true;
+
+        const tree = renderer.create(<CountriesList />);
+        const action = {
+            type: 'countries/fetchCountries',
+            payload: {
+                page: 1,
+                itemsPerPage: '50',
+                reload: false
+            }
+        };
+        let input = tree.root.findByProps({name: 'searchByName'});
+        
+        const event = {
+            currentTarget: {
+               name: 'searchByName',
+               value: ''
+            }
+        }
+        
+        expect(input).toBeTruthy();
+        
+        act(() => input.props.onChange(event));
+
+        await new Promise(r => setTimeout(r, 900));
+        expect(timeout).toBeTruthy();
+        
+        expect(mockDispatchFn).toHaveBeenLastCalledWith(action);
         expect(tree.toJSON()).toMatchSnapshot();
      });
 

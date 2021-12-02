@@ -2,15 +2,22 @@ import React from 'react';
 import {ReactComponent as ChveronDown} from '../../assets/chevron_down.svg';
 
 export const Filters = (props) => {
-    const { filterBy, itemsPerPage, onChange, onSelect } = props;
+    const { filterBy, searchByName, itemsPerPage, onChange, onSelect } = props;
 
     return (
         <form className='filter'>
             <input
                 type='text'
-                placeholder='filter by name' 
+                placeholder='filter countries by name' 
                 name='filterBy' 
                 value={filterBy} 
+                onChange={onChange} 
+            />
+            <input
+                type='text'
+                placeholder='get country by name' 
+                name='searchByName' 
+                value={searchByName} 
                 onChange={onChange} 
             />
             <label htmlFor='per_page'>Item per page</label>

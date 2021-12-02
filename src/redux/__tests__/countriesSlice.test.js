@@ -9,6 +9,7 @@ import {
     fetchCountriesFailure,
     beginUserAction,
     selectCountry,
+    fetchCountryByName,
     cancelUserAction
 } from '../countriesSlice';
 
@@ -38,5 +39,9 @@ describe('Countries slice test', () => {
     it('should set handle countries/cancelUserAction', () => {
         let state = counterSlice.reducer(States.mockedEmptyState, cancelUserAction(null))
         expect(state).toEqual(States.mockedEmptyState);
+    });
+    it('should set handle countries/fetchCountryByName', () => {
+        let state = counterSlice.reducer(States.mockedEmptyState, fetchCountryByName({name: 'ro'}))
+        expect(state).toEqual(States.mockedLoadingState);
     });
 })

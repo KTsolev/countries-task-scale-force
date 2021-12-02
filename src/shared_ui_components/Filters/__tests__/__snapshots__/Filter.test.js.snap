@@ -16,8 +16,19 @@ exports[`Filters tests should onChange and OnSelect 1`] = `
               },
             },
           ],
+          Array [
+            Object {
+              "target": Object {
+                "value": "ro",
+              },
+            },
+          ],
         ],
         "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
           Object {
             "type": "return",
             "value": undefined,
@@ -25,9 +36,45 @@ exports[`Filters tests should onChange and OnSelect 1`] = `
         ],
       }
     }
-    placeholder="filter by name"
+    placeholder="filter countries by name"
     type="text"
     value="AU"
+  />
+  <input
+    name="searchByName"
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "target": Object {
+                "value": "AU",
+              },
+            },
+          ],
+          Array [
+            Object {
+              "target": Object {
+                "value": "ro",
+              },
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    placeholder="get country by name"
+    type="text"
+    value="ro"
   />
   <label
     htmlFor="per_page"
@@ -104,9 +151,15 @@ exports[`Filters tests should render component with props 1`] = `
 >
   <input
     name="filterBy"
-    placeholder="filter by name"
+    placeholder="filter countries by name"
     type="text"
     value="ard"
+  />
+  <input
+    name="searchByName"
+    placeholder="get country by name"
+    type="text"
+    value="ro"
   />
   <label
     htmlFor="per_page"
@@ -164,7 +217,12 @@ exports[`Filters tests should render component without props 1`] = `
 >
   <input
     name="filterBy"
-    placeholder="filter by name"
+    placeholder="filter countries by name"
+    type="text"
+  />
+  <input
+    name="searchByName"
+    placeholder="get country by name"
     type="text"
   />
   <label

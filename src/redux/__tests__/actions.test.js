@@ -4,7 +4,8 @@ import {
     fetchCountriesFailure,
     selectCountry,
     cancelUserAction,
-    beginUserAction 
+    beginUserAction,
+    fetchCountryByName
 } from '../countriesSlice';
 import configureMockStore from 'redux-mock-store';
 // eslint-disable-next-line jest/no-mocks-import
@@ -66,6 +67,12 @@ describe('countries actions tests',() => {
         store.dispatch(cancelUserAction(null));
         action = store.getActions();
         expectedAction = [{ type: 'countries/cancelUserAction', payload: null }];
+        expect(action).toEqual(expectedAction)
+    });
+    it('should dispatch fetchCountryByName', () => {
+        store.dispatch(fetchCountryByName({name: 'ro'}));
+        action = store.getActions();
+        expectedAction = [{ type: 'countries/fetchCountryByName', payload: { name: 'ro'} }];
         expect(action).toEqual(expectedAction)
     });
 })

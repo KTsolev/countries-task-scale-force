@@ -16,7 +16,7 @@ exports[`ErrorHandler tests when all props are passed 1`] = `
     Something went wrong!
   </h2>
   <span
-    className="error-button"
+    className="error-page-button"
     onClick={[MockFunction]}
   >
     Try again.

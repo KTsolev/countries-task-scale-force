@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { fetchCountries } from '../../redux/countriesSlice';
+import { fetchCountries, fetchCountryByName } from '../../redux/countriesSlice';
 import { selectCountries, selectedCountry, isLoading, error as queryError } from '../../redux/selectors';
 import { CountryTile } from '../../shared_ui_components/CountryTile/CountryTile';
 import { Filters } from '../../shared_ui_components/Filters/Filters';
@@ -9,6 +9,7 @@ import { TableHeader } from '../../shared_ui_components/TableHeader/TableHeader'
 import {ErrorHandler} from '../../shared_ui_components/ErrorHandler/ErrorHandler';
 import { ShimmerComponent } from '../../shared_ui_components/ShimmerComponent/ShimmerComponent';
 import { PaginationButtons } from '../../shared_ui_components/PaginationButtons/PaginationButtons';
+import _ from 'lodash';
 
 export const CountriesList = (props) => {
   const fetchedCountries = useSelector(selectCountries);
@@ -19,29 +20,44 @@ export const CountriesList = (props) => {
   const history = useHistory();
   const [filtered, setFiltered] = useState([]);
   const [filterBy, setFilterBy] = useState('');
+  const [searchByName, setSearchByName] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(0);
   const { items = [], page, pages, per_page } = fetchedCountries;
 
+  const loadCountries = useCallback((page=1, itemsPerPage=50, reload=false) => dispatch(fetchCountries({page, itemsPerPage, reload})),[dispatch]);
+
   useEffect(() => {
       loadCountries(page, per_page);
-  }, []);
+  }, [loadCountries, page, per_page]);
 
   useEffect(() => {
     if (selectedCountryDetails) {
         history.push('/details');
     }
-  }, [selectedCountryDetails])
+  }, [history, selectedCountryDetails])
 
   useEffect(() => {
     if (pages > 0) {
       setItemsPerPage(per_page);
     }
 
-  }, [pages]);
+  }, [pages, per_page]);
 
   useEffect(() => {
     setFiltered(items);
   }, [items]);
+
+  const debouncedAction = useMemo(
+    () => _.debounce(query => {
+      if (!query.name) {
+        loadCountries(page, per_page);;
+      } else {
+        dispatch(fetchCountryByName(query));
+      }
+    }, 800),
+    
+    [loadCountries, page, per_page, dispatch]
+  );
 
   const filterByName = (value) => {
     let newItems = []; 
@@ -54,14 +70,17 @@ export const CountriesList = (props) => {
     setFiltered(newItems);
   }
 
-  const loadCountries = (page=1, itemsPerPage=50) => dispatch(fetchCountries({page, itemsPerPage}));
-
-
   const onChange = (event) => {
       const value = event.currentTarget.value;
+      const input = event.currentTarget.name;
 
-      setFilterBy(value);
-      filterByName(value)
+      if (input === 'searchByName') {
+          setSearchByName(value);
+          debouncedAction({name: value});
+      } else {
+        setFilterBy(value);
+        filterByName(value);
+      }
   }
 
   const onSelect = (event) => {
@@ -109,11 +128,37 @@ export const CountriesList = (props) => {
   }
 
   if (error) {
+    if (error && error.message) {
+      return (
+        <section className="list">
+          <h2>Countries List</h2>
+          <Filters 
+              filterBy={filterBy}
+              searchByName={searchByName}
+              onChange={onChange}
+              itemsPerPage={itemsPerPage}
+              onSelect={onSelect}
+          />
+          <TableHeader clasName='list-header' onPress={sortBy} />
+          <ErrorHandler 
+            title={error.message[0].value}
+            onPress={loadCountries}
+          />
+        </section>);
+    }
     return (
       <section className="list">
         <h2>Countries List</h2>
+        <Filters 
+            filterBy={filterBy}
+            searchByName={searchByName}
+            onChange={onChange}
+            itemsPerPage={itemsPerPage}
+            onSelect={onSelect}
+        />
+        <TableHeader clasName='list-header' onPress={sortBy} />
         <ErrorHandler 
-          title="Something went wrong and coudn't fetch data"
+          title='Something went wrong.'
           onPress={loadCountries}
         />
       </section>); 
@@ -124,6 +169,7 @@ export const CountriesList = (props) => {
         <h2>Countries List</h2>
         <Filters 
             filterBy={filterBy}
+            searchByName={searchByName}
             onChange={onChange}
             itemsPerPage={itemsPerPage}
             onSelect={onSelect}

@@ -10,19 +10,21 @@ export const PaginationButtons = (props) => {
   const { pages, page } = fetchedCountries;
   const [buttons, setButtons] = useState([]);
 
+  
   useEffect(() => {
+    const calculatePaginationButtons = () => {
+      let items = [];
+      
+      for(let p=1; p <= pages; p++) {
+        items.push(p);
+      }
+  
+      setButtons([...items]);
+    }
+    
     calculatePaginationButtons();    
   }, [pages, itemsPerPage]);
 
-  const calculatePaginationButtons = () => {
-    let items = [];
-    
-    for(let p=1; p <= pages; p++) {
-      items.push(p);
-    }
-
-    setButtons([...items]);
-  }
 
   const onPaginationButtonClick = (event) => {
     const value = event.currentTarget.innerHTML;

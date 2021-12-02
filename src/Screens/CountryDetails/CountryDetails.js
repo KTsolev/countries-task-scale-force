@@ -15,7 +15,7 @@ export const CountryDetails  = (props) => {
         return () => {
            dispatch(cancelUserAction(null));
         }
-    }, [])
+    }, [dispatch])
 
     const goBack = () => {
         history.push('/');

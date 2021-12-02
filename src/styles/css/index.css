@@ -318,6 +318,22 @@ h2 {
   height: 20px;
 }
 
+.error-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.error-page-button {
+  text-align: center;
+  width: 120px;
+  height: 40px;
+  padding: 8px 10px;
+  background-color: #ce6f30;
+  color: #FFF;
+}
+
 .table-header {
   display: flex;
   flex-direction: row;

@@ -23,7 +23,7 @@ const initialState  = {
         return {
             ...state,
             loading: false,
-            result: {...action.payload}
+            result: action.payload
         };
       },
       fetchCountriesFailure: (state, action) => {
@@ -50,6 +50,12 @@ const initialState  = {
           selectedCountry: action.payload,
         };
       },
+      fetchCountryByName: (state, action) => {
+        return {
+          ...state,
+          loading: true
+        };
+      },
     },
   });
 
@@ -58,6 +64,7 @@ export const {
   fetchCountriesSuccess,
   fetchCountriesFailure,
   selectCountry,
+  fetchCountryByName,
   cancelUserAction,
   beginUserAction
  } = counterSlice.actions;
